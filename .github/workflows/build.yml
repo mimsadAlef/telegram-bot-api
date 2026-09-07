@@ -1,4 +1,3 @@
-```yaml
 name: Build Telegram Bot API
 
 on:
@@ -71,4 +70,3 @@ jobs:
           name: telegram-bot-api-linux-x86_64
           path: telegram-bot-api-linux-x86_64.tar.gz
           retention-days: 30
-```
