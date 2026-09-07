@@ -1,3 +1,4 @@
+```yaml
 name: Build Telegram Bot API
 
 on:
@@ -30,12 +31,6 @@ jobs:
             libssl-dev \
             zlib1g-dev
 
-      - name: Show tool versions
-        run: |
-          cmake --version
-          g++ --version
-          gperf --version
-
       - name: Configure
         run: |
           cmake \
@@ -49,12 +44,11 @@ jobs:
           cmake \
             --build build \
             --config Release \
-            --parallel
+            --parallel 2
 
       - name: Install
         run: |
-          sudo cmake \
-            --install build
+          sudo cmake --install build
 
       - name: Verify binary
         run: |
@@ -68,9 +62,6 @@ jobs:
           cp /usr/local/bin/telegram-bot-api \
              artifact/
 
-          cp /usr/local/bin/telegram-bot-api-health-check \
-             artifact/ 2>/dev/null || true
-
           tar -czf telegram-bot-api-linux-x86_64.tar.gz \
             -C artifact .
 
@@ -79,5 +70,5 @@ jobs:
         with:
           name: telegram-bot-api-linux-x86_64
           path: telegram-bot-api-linux-x86_64.tar.gz
-          if-no-files-found: error
           retention-days: 30
+```
